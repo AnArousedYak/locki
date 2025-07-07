@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <Menu onSelect={setCurrentScreen} SCREENS={SCREENS} />
+      <Menu onMenuSelection={setCurrentScreen} SCREENS={SCREENS} />
 
       {currentScreen === SCREENS.GENERATOR && <Generator />}
       {currentScreen === SCREENS.VAULT && <Vault />}

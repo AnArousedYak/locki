@@ -2,9 +2,9 @@ import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { handleMenuSelection } from './util/menuUtility'; 
+import { handleMenuSelection } from './util/menuUtility';
 
-function Menu({ onSelect, SCREENS }) {
+function Menu({ onMenuSelection, SCREENS }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,27 +20,28 @@ function Menu({ onSelect, SCREENS }) {
         aria-label="Toggle menu"
         role="button"
       >
-        {menuOpen ? (
-          <CloseIcon fontSize="large" />) : ( <MenuIcon fontSize="large" />)}
+        {menuOpen ? (<CloseIcon fontSize="large" />) : (<MenuIcon fontSize="large" />)}
       </div>
 
       {menuOpen && (
         <div className="menu-container">
           <h1>Menu</h1>
+
           {/*==================GENERATOR BUTTON===============*/}
           <button
             className="generator"
             onClick={() =>
-              handleMenuSelection(SCREENS.GENERATOR, onSelect, setMenuOpen)
+              handleMenuSelection(SCREENS.GENERATOR, onMenuSelection, setMenuOpen)
             }
           >
             Generator
           </button>
-            {/*==================VAULT BUTTON===============*/}
+
+          {/*==================VAULT BUTTON===============*/}
           <button
             className="vault"
             onClick={() =>
-              handleMenuSelection(SCREENS.VAULT, onSelect, setMenuOpen)
+              handleMenuSelection(SCREENS.VAULT, onMenuSelection, setMenuOpen)
             }
           >
             Vault
