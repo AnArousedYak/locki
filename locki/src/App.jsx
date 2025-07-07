@@ -1,26 +1,22 @@
-import Header from './components/Header'
-import Nav from './components/Nav'
-import HomeContent from './components/HomeContent'
-import PassGen from './components/PasswordGenerator'
-import Settings from './components/Settings'
-import Vault from './components/AccountVault'
-import VaultForm from './components/VaultForm'
-import VaultItem from './components/VaultItem'
+import { useState } from 'react';
+import Menu from './components/Menu';
+import Generator from './components/Generator';
+import Vault from './components/Vault';
+import SCREENS from './components/util/Screens';
+
 
 function App() {
+  // useState to track the current screen, setting the initial screen to none!
+  const [currentScreen, setCurrentScreen] = useState(SCREENS.NONE);
 
   return (
     <>
-      <Header />
-      <Nav />
-      <HomeContent />
-      <PassGen />
-      <Settings />
-      <Vault />
-      <VaultForm />
-      <VaultItem />
+      <Menu onSelect={setCurrentScreen} SCREENS={SCREENS} />
+
+      {currentScreen === SCREENS.GENERATOR && <Generator />}
+      {currentScreen === SCREENS.VAULT && <Vault />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
