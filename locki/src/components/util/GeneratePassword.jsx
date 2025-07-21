@@ -1,31 +1,37 @@
+
 function generatePassword() {
-  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const numbers = '0123456789';
-  const symbols = '!@?#$';
-  const allChars = lowercase + uppercase + numbers + symbols;
+  const lowercaseCharacters = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numericCharacters = '0123456789';
+  const symbolCharacters = '!@?#$';
+  const allAvailableCharacters = lowercaseCharacters + uppercaseCharacters + numericCharacters + symbolCharacters;
 
-  const getRandomChar = str => str[Math.floor(Math.random() * str.length)];
-  const length = Math.floor(Math.random() * 4) + 9; // 9–12
+  const getRandomCharacterFrom = characterSet =>
+    characterSet[Math.floor(Math.random() * characterSet.length)];
 
-  let password = [
-    getRandomChar(lowercase),
-    getRandomChar(uppercase),
-    getRandomChar(numbers),
-    getRandomChar(symbols),
+  const passwordLength = Math.floor(Math.random() * 4) + 9; //between 9-12
+
+  const passwordCharacterArray = [
+    getRandomCharacterFrom(lowercaseCharacters),
+    getRandomCharacterFrom(uppercaseCharacters),
+    getRandomCharacterFrom(numericCharacters),
+    getRandomCharacterFrom(symbolCharacters),
   ];
 
-  while (password.length < length) {
-    password.push(getRandomChar(allChars));
+  while (passwordCharacterArray.length < passwordLength) {
+    passwordCharacterArray.push(getRandomCharacterFrom(allAvailableCharacters));
   }
 
-  // Shuffle
-  for (let i = password.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [password[i], password[j]] = [password[j], password[i]];
+  // knuth shuffle for efficiency and randomness
+  for (let index = passwordCharacterArray.length - 1; index > 0; index--) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [passwordCharacterArray[index], passwordCharacterArray[randomIndex]] = [
+      passwordCharacterArray[randomIndex],
+      passwordCharacterArray[index],
+    ];
   }
 
-  return password.join('');
+  return passwordCharacterArray.join('');
 }
 
 export default generatePassword;
