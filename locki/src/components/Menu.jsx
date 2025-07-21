@@ -12,16 +12,16 @@ function Menu({ onMenuSelection, SCREENS }) {
   };
 
   return (
-    <div className="menu-container">
-      <div
-        className="menu-toggle"
-        onClick={toggleMenu}
-        style={{ cursor: 'pointer' }}
-        aria-label="Toggle menu"
-        role="button"
-      >
-        {menuOpen ? (<CloseIcon fontSize="large" />) : (<MenuIcon fontSize="large" />)}
-      </div>
+<div className="menu-container">
+        <div
+          className="menu-toggle"
+          onClick={toggleMenu}
+          style={{ cursor: 'pointer' }}
+          aria-label="Toggle menu"
+          role="button"
+        >
+      {menuOpen ? (<CloseIcon fontSize="large" />) : (<MenuIcon fontSize="large" />)}
+</div>
 
       {menuOpen && (
         <div className="menu-container">
